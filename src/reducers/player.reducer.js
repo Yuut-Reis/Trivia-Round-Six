@@ -7,7 +7,8 @@ const player = (state = INITIAL_STATE, action) => {
   case 'SET_EMAIL':
     return {
       ...state,
-      email: action.payload,
+      email: action.payload.email,
+      name: action.payload.name,
     };
   default:
     return state;
