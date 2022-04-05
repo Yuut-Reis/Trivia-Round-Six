@@ -14,7 +14,6 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 
 - [Boas vindas ao repositório do projeto de Trivia!](#boas-vindas-ao-repositório-do-projeto-de-trivia)
 - [Sumário](#sumário)
-- [Habilidades](#habilidades)
 - [Entregáveis](#entregáveis)
   - [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
   - [Desenvolvimento](#desenvolvimento)
@@ -61,24 +60,6 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
   - [Depois de terminar o desenvolvimento (opcional)](#depois-de-terminar-o-desenvolvimento-opcional)
     - [Revisando um pull request](#revisando-um-pull-request)
 - [Avisos finais](#avisos-finais)
-
----
-
-# Habilidades
-
-Nesse projeto, você será capaz de:
-
-  - Criar um store Redux em aplicações React
-
-  - Criar reducers no Redux em aplicações React
-
-  - Criar actions no Redux em aplicações React
-
-  - Criar dispatchers no Redux em aplicações React
-
-  - Conectar Redux aos componentes React
-
-  - Criar actions assíncronas na sua aplicação React que faz uso de Redux.
 
 ---
 
