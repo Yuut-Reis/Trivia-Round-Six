@@ -1,4 +1,4 @@
-const fetchTokenAction = () => async (dispatch) => {
+export const fetchTokenAction = () => async (dispatch) => {
   dispatch({ type: 'FETCH_TOKEN_REQUEST_START' });
   try {
     const response = await fetch('https://opentdb.com/api_token.php?command=request');
@@ -9,4 +9,7 @@ const fetchTokenAction = () => async (dispatch) => {
   }
 };
 
-export default fetchTokenAction;
+export const playerAction = (email, name) => ({
+  type: 'SET_EMAIL',
+  payload: { email, name },
+});
