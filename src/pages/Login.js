@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import fetchTokenAction from '../actions';
 import './Login.css';
 
 class Login extends Component {
@@ -9,8 +13,6 @@ class Login extends Component {
 
   validatePlayButton = () => {
     const { name, email } = this.state;
-    console.log('entrou');
-    console.log('Length', name.length, 'Length', email.length);
     return !(name.length && email.length);
   }
 
@@ -22,6 +24,7 @@ class Login extends Component {
   }
 
   render() {
+    const { token } = this.props;
     const { name, email } = this.state;
     return (
       <form>
@@ -47,18 +50,28 @@ class Login extends Component {
             placeholder="Email"
           />
         </div>
-        <button
-          className="btn btn-primary"
-          data-testid="btn-play"
-          type="button"
-          disabled={ this.validatePlayButton() }
-          onClick={ this.handleClick }
-        >
-          Play
-        </button>
+        <Link to="/game">
+          <button
+            className="btn btn-lg btn-primary"
+            data-testid="btn-play"
+            type="button"
+            disabled={ this.validatePlayButton() }
+            onClick={ token }
+          >
+            Play
+          </button>
+        </Link>
       </form>
     );
   }
 }
 
-export default Login;
+Login.propTypes = {
+  token: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  token: () => dispatch(fetchTokenAction()),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
