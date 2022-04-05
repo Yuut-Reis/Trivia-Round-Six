@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import tokenAction, { fetchTokenAction } from '../actions';
-import { fetchTokenAPI } from '../services/requestTrivia';
+import fetchTokenAction from '../actions';
 import './Login.css';
 
 class Login extends Component {
@@ -14,8 +13,6 @@ class Login extends Component {
 
   validatePlayButton = () => {
     const { name, email } = this.state;
-    // console.log('entrou');
-    // console.log('Length', name.length, 'Length', email.length);
     return !(name.length && email.length);
   }
 
@@ -24,14 +21,6 @@ class Login extends Component {
     this.setState({
       [name]: value,
     });
-  }
-
-  handleClick = async () => {
-    const { token } = this.props;
-    const resolve = token();
-    // const token = Object.entries(resolve).filter(([key]) => key === 'token');
-    console.log(resolve);
-    token(resolve);
   }
 
   render() {
