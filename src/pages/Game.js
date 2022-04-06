@@ -4,37 +4,50 @@ import { connect } from 'react-redux';
 import { fetchTokenAction } from '../actions';
 import Header from '../components/Header';
 import Question from '../components/Question';
+import { fetchQuestionAPI } from '../services/requestTrivia';
 
 class Game extends Component {
-  state = {
-    questionsState: [],
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      questionsState: [],
+    };
   }
 
   async componentDidMount() {
-    const { newToken, questions } = this.props;
-    this.setState({ questionsState: questions.results });
+    // const { questionsState } = this.state;
+    // const { questions } = this.props;
+    const { newToken, token } = this.props;
+    const request = await fetchQuestionAPI(token);
+    this.setState({ questionsState: request.results });
+
+    console.log(this.state);
 
     const ERROR_API = 3;
-    if (questions.response_code === ERROR_API) newToken();
+    if (request.response_code === ERROR_API) newToken();
   }
 
   render() {
+    // const { questions } = this.props;
     const { questionsState } = this.state;
     return (
       <>
         <Header />
         {
-          questionsState.map((question) => (
-            <Question
-              key={ question.question }
-              category={ question.category }
-              text={ question.question }
-              answerType={ question.type }
-              level={ question.difficulty }
-              correct={ question.correct_answer }
-              incorrect={ question.incorrect_answers }
-            />
-          ))
+          questionsState.filter((item, index) => index < 1)
+            .map((item, index) => (
+              <Question
+                id={ index }
+                key={ item.question }
+                category={ item.category }
+                text={ item.question }
+                answerType={ item.type }
+                level={ item.difficulty }
+                correct={ item.correct_answer }
+                incorrect={ item.incorrect_answers }
+              />
+            ))
         }
       </>
 
@@ -43,7 +56,8 @@ class Game extends Component {
 }
 
 Game.propTypes = {
-  questions: PropTypes.objectOf(PropTypes.any).isRequired,
+  token: PropTypes.string.isRequired,
+  // questions: PropTypes.objectOf(PropTypes.any).isRequired,
   newToken: PropTypes.func.isRequired,
 };
 
@@ -54,6 +68,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   newToken: () => dispatch(fetchTokenAction()),
+  // questionsGame: (token) => dispatch(fetchQuestionAction(token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

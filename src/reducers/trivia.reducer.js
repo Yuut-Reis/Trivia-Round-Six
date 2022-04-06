@@ -1,4 +1,8 @@
-const trivia = (state = {}, action) => {
+const INITIAL_STATE = {
+  questions: {},
+};
+
+const trivia = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case 'FETCH_QUESTIONS_SUCCESS':
     return {

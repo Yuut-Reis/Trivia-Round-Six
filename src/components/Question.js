@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 class Question extends Component {
   render() {
     const {
+      // id,
       category,
       text,
       correct,
@@ -44,7 +45,6 @@ class Question extends Component {
               .map(({ value }) => value)
           }
         </div>
-
       </section>
     );
   }
@@ -54,7 +54,7 @@ Question.propTypes = {
   category: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   correct: PropTypes.string.isRequired,
-  incorrect: PropTypes.string.isRequired,
+  incorrect: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 export default Question;
