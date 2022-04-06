@@ -5,8 +5,7 @@ export const fetchTokenAPI = async () => {
 };
 
 const number = 5;
-
-export const fetchQuestionAPI = async (quantity = number, token) => {
+export const fetchQuestionAPI = async (token, quantity = number) => {
   const response = await fetch(`https://opentdb.com/api.php?amount=${quantity}&token=${token}`);
   const data = await response.json();
   return data;

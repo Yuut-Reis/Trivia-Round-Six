@@ -1,9 +1,9 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { DiAptana } from 'react-icons/di';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { DiAptana } from 'react-icons/di';
-import { fetchTokenAction, playerAction } from '../actions';
+import { fetchQuestionAction, fetchTokenAction, playerAction } from '../actions';
 import './Login.css';
 
 class Login extends Component {
@@ -23,11 +23,13 @@ class Login extends Component {
     });
   }
 
-  dispatches = () => {
-    const { token, player } = this.props;
+  dispatches = async () => {
+    const { token, player, tokenState, questions, history } = this.props;
     const { email, name } = this.state;
-    token();
+    await token();
     player(email, name);
+    await questions(tokenState);
+    history.push('/game');
   };
 
   render() {
@@ -57,17 +59,15 @@ class Login extends Component {
               placeholder="Email"
             />
           </div>
-          <Link to="/game">
-            <button
-              className="btn btn-lg btn-primary"
-              data-testid="btn-play"
-              type="button"
-              disabled={ this.validatePlayButton() }
-              onClick={ this.dispatches }
-            >
-              Play
-            </button>
-          </Link>
+          <button
+            className="btn btn-lg btn-primary"
+            data-testid="btn-play"
+            type="button"
+            disabled={ this.validatePlayButton() }
+            onClick={ this.dispatches }
+          >
+            Play
+          </button>
         </form>
 
         <Link to="/settings">
@@ -86,11 +86,21 @@ class Login extends Component {
 Login.propTypes = {
   token: PropTypes.func.isRequired,
   player: PropTypes.func.isRequired,
+  questions: PropTypes.func.isRequired,
+  tokenState: PropTypes.string.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  tokenState: state.token,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   token: () => dispatch(fetchTokenAction()),
   player: (email, nome) => dispatch(playerAction(email, nome)),
+  questions: (token) => dispatch(fetchQuestionAction(token)),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
