@@ -29,6 +29,7 @@ class Game extends Component {
   }
 
   render() {
+    // so para fazer pull request
     // const { questions } = this.props;
     const { questionsState } = this.state;
     return (
