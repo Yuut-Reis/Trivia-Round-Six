@@ -24,11 +24,12 @@ class Login extends Component {
   }
 
   dispatches = async () => {
-    const { token, player, tokenState, questions } = this.props;
+    const { token, player, tokenState, questions, history } = this.props;
     const { email, name } = this.state;
     await token();
     player(email, name);
     await questions(tokenState);
+    history.push('/game');
   };
 
   render() {
@@ -58,17 +59,15 @@ class Login extends Component {
               placeholder="Email"
             />
           </div>
-          <Link to="/game">
-            <button
-              className="btn btn-lg btn-primary"
-              data-testid="btn-play"
-              type="button"
-              disabled={ this.validatePlayButton() }
-              onClick={ this.dispatches }
-            >
-              Play
-            </button>
-          </Link>
+          <button
+            className="btn btn-lg btn-primary"
+            data-testid="btn-play"
+            type="button"
+            disabled={ this.validatePlayButton() }
+            onClick={ this.dispatches }
+          >
+            Play
+          </button>
         </form>
 
         <Link to="/settings">
@@ -89,6 +88,9 @@ Login.propTypes = {
   player: PropTypes.func.isRequired,
   questions: PropTypes.func.isRequired,
   tokenState: PropTypes.string.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
