@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -33,6 +32,7 @@ class Login extends Component {
   };
 
   render() {
+    // const { token } = this.props;
     const { name, email } = this.state;
     return (
       <div>
@@ -65,7 +65,7 @@ class Login extends Component {
               data-testid="btn-play"
               type="button"
               disabled={ this.validatePlayButton() }
-              onClick={ token }
+              onClick={ this.dispatches }
             >
               Play
             </button>
@@ -76,8 +76,8 @@ class Login extends Component {
           <button
             data-testid="btn-settings"
             type="button"
-            disabled={ this.validatePlayButton() }
-            onClick={ this.dispatches }
+            // disabled={ this.validatePlayButton() }
+            // onClick={ this.dispatches }
           >
             <DiAptana />
           </button>

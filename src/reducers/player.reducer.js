@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
   email: '',
+  name: '',
 };
 
 const player = (state = INITIAL_STATE, action) => {
