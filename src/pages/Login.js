@@ -18,7 +18,6 @@ class Login extends Component {
   }
 
   handleChange = ({ target: { name, value } }) => {
-    // const { name, value } = target;
     this.setState({
       [name]: value,
     });
@@ -32,7 +31,6 @@ class Login extends Component {
   };
 
   render() {
-    // const { token } = this.props;
     const { name, email } = this.state;
     return (
       <div>
@@ -76,8 +74,6 @@ class Login extends Component {
           <button
             data-testid="btn-settings"
             type="button"
-            // disabled={ this.validatePlayButton() }
-            // onClick={ this.dispatches }
           >
             <DiAptana />
           </button>
