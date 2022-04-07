@@ -13,11 +13,12 @@ class Question extends Component {
         item.style.border = '3px solid rgb(255, 0, 0)';
       });
     } else {
-      target.style.border = '3px solid rgb(255, 0, 0)';
-      const right = document.querySelectorAll('.correct-answer');
-      right.forEach((item) => {
-        item.style.border = '3px solid rgb(6, 240, 15)';
+      const wrong = document.querySelectorAll('.wrong-answer');
+      wrong.forEach((item) => {
+        item.style.border = '3px solid rgb(255, 0, 0)';
       });
+      const right = document.querySelector('.correct-answer');
+      right.style.border = '3px solid rgb(6, 240, 15)';
     }
   }
 
