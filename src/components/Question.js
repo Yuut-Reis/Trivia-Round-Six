@@ -22,14 +22,6 @@ class Question extends Component {
     }
   }
 
-  handleCorrectAnswer = () => {
-    // this.setState({ style: 'correct-answer' });
-  }
-
-  handleWrongAnswer = () => {
-    // this.setState({ style: 'wrong-answer' });
-  }
-
   render() {
     const {
       // id,
