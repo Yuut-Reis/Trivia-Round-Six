@@ -1,0 +1,18 @@
+.options {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px 5px;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.options button {
+  background-color: #037a76;
+  border: 3px solid #037a76;
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  outline: 0;
+  padding: 10px 0;
+  width: 49%;
+}

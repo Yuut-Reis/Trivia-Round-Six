@@ -1,8 +1,9 @@
+import { decode } from 'he';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { decode } from 'he';
-import { scoreAction, nextAction } from '../actions/actions';
+import { nextAction, scoreAction } from '../actions/actions';
+import styles from './Buttons.module.css';
 
 class Buttons extends Component {
   constructor(props) {
@@ -125,7 +126,7 @@ class Buttons extends Component {
 
     console.log('Render Questions');
     return (
-      <div data-testid="answer-options">
+      <div data-testid="answer-options" className={ styles.options }>
         {
           buttonsArray.map(
             (button) => (
