@@ -14,6 +14,7 @@ body {
   min-width: 400px;
   padding: 30px 70px;
   width: 60%;
+  z-index: 1;
 }
 
 .soldiers {
@@ -22,6 +23,7 @@ body {
   justify-content: space-between;
   position: absolute;
   width: 100%;
+  z-index: -1;
 }
 
 .soldiers img {
