@@ -53,17 +53,14 @@ class Buttons extends Component {
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value);
 
-    console.log(randomButtons);
-
     this.setState({
       buttonsArray: randomButtons,
     });
   }
 
   handleClick = ({ target }) => {
-    console.log(target);
     const element = target.getAttribute('data-testid');
-    console.log(element);
+
     if (element === 'correct-answer') {
       target.style.border = '3px solid rgb(6, 240, 15)';
       this.handleCorrectAnswer();
@@ -71,7 +68,6 @@ class Buttons extends Component {
       target.style.border = '3px solid rgb(255, 0, 0)';
       const right = document.querySelector('.correct-answer');
       right.style.border = '3px solid rgb(6, 240, 15)';
-      // this.handleWrongAnswer();
     }
 
     this.showNextButton();
@@ -83,11 +79,8 @@ class Buttons extends Component {
   }
 
   handleCorrectAnswer = () => {
-    console.log('Entrou no handle correct');
     const { assertions } = this.state;
     const { level, scoreDispatch } = this.props;
-
-    // this.setState({ random: false });
 
     let difficulty = 0;
     const number = 10;
@@ -101,8 +94,6 @@ class Buttons extends Component {
     } else {
       difficulty = 1;
     }
-
-    console.log('Time: ', time);
 
     const newScore = (number + (time * difficulty));
     console.log('newScore: ', newScore);
@@ -123,8 +114,6 @@ class Buttons extends Component {
 
   render() {
     const { showNext, buttonsArray } = this.state;
-
-    console.log('Render Questions');
     return (
       <div data-testid="answer-options" className={ styles.options }>
         {
@@ -148,6 +137,7 @@ class Buttons extends Component {
               data-testid="btn-next"
               type="button"
               onClick={ this.handleClickNext }
+              className={ styles.next }
             >
               Next
             </button>
