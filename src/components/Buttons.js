@@ -9,9 +9,54 @@ class Buttons extends Component {
     super(props);
 
     this.state = {
-      // time: 30,
+      buttonsArray: [],
       showNext: false,
     };
+  }
+
+  componentDidMount() {
+    const {
+      correct,
+      incorrect } = this.props;
+    const options = [...incorrect, correct];
+
+    // Embaralhar array: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+    // Transformar elementos HTML em array: https://stackoverflow.com/questions/2735067/how-to-convert-a-dom-node-list-to-an-array-in-javascript
+    const randomButtons = [...options]
+      .map((alternativa, index) => (
+        index === options.length - 1
+          ? (
+            <button
+              key={ alternativa }
+              data-testid="correct-answer"
+              className="correct-answer"
+              type="button"
+              onClick={ this.handleClick }
+            >
+              {decode(alternativa)}
+            </button>
+          )
+          : (
+            <button
+              key={ alternativa }
+              data-testid={ `wrong-answer-${index}` }
+              className="wrong-answer"
+              type="button"
+              onClick={ this.handleClick }
+            >
+              {decode(alternativa)}
+            </button>
+          )
+      ))
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+
+    console.log(randomButtons);
+
+    this.setState({
+      buttonsArray: randomButtons,
+    });
   }
 
   handleClick = ({ target }) => {
@@ -76,48 +121,24 @@ class Buttons extends Component {
   }
 
   render() {
-    const { showNext } = this.state;
-    const {
-      correct,
-      incorrect } = this.props;
-    // const { random } = this.state;
-    // const { style } = this.state;
-    const options = [...incorrect, correct];
+    const { showNext, buttonsArray } = this.state;
+
     console.log('Render Questions');
     return (
       <div data-testid="answer-options">
         {
-          // Embaralhar array: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-          // Transformar elementos HTML em array: https://stackoverflow.com/questions/2735067/how-to-convert-a-dom-node-list-to-an-array-in-javascript
-          [...options
-            .map((alternativa, index) => (
-              index === options.length - 1
-                ? (
-                  <button
-                    key={ alternativa }
-                    data-testid="correct-answer"
-                    className="correct-answer"
-                    type="button"
-                    onClick={ this.handleClick }
-                  >
-                    {decode(alternativa)}
-                  </button>
-                )
-                : (
-                  <button
-                    key={ alternativa }
-                    data-testid={ `wrong-answer-${index}` }
-                    className="wrong-answer"
-                    type="button"
-                    onClick={ this.handleClick }
-                  >
-                    {decode(alternativa)}
-                  </button>
-                )
-            ))]
-            .map((value) => ({ value, sort: Math.random() }))
-            .sort((a, b) => a.sort - b.sort)
-            .map(({ value }) => value)
+          buttonsArray.map(
+            (button) => (
+              <button
+                key={ button.key }
+                type="button"
+                data-testid={ button.props['data-testid'] }
+                className={ button.props.className }
+                onClick={ this.handleClick }
+              >
+                {button.props.children}
+              </button>),
+          )
         }
         {
           showNext && (

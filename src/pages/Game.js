@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { fetchTokenAction } from '../actions/actions';
 import PinkSoldier from '../assets/images/game-soldier.png';
 import Header from '../components/Header';
@@ -31,6 +32,7 @@ class Game extends Component {
   render() {
     const { questionsState } = this.state;
     const { questionNumber } = this.props;
+    const five = 5;
     return (
       <>
         <Header />
@@ -62,6 +64,9 @@ class Game extends Component {
               ))
           }
         </main>
+        {
+          questionNumber === five && (<Redirect to="/feedback" />)
+        }
         <div className={ styles.soldiers }>
           <img src={ PinkSoldier } alt="Pink Soldier." />
           <img src={ PinkSoldier } alt="Pink Soldier." />
