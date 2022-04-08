@@ -20,6 +20,11 @@ export const scoreAction = (assertions, score) => ({
   payload: { assertions, score },
 });
 
+export const timeAction = (time) => ({
+  type: 'SET_TIME',
+  payload: { time },
+});
+
 export const fetchQuestionAction = (token) => async (dispatch) => {
   dispatch({ type: 'FETCH_QUESTIONS_START' });
   try {
