@@ -79,8 +79,8 @@ class Buttons extends Component {
   }
 
   handleCorrectAnswer = () => {
-    const { assertions } = this.state;
-    const { level, scoreDispatch } = this.props;
+    const { level, scoreDispatch, acertos } = this.props;
+    console.log(acertos);
 
     let difficulty = 0;
     const number = 10;
@@ -96,9 +96,7 @@ class Buttons extends Component {
     }
 
     const newScore = (number + (time * difficulty));
-    console.log('newScore: ', newScore);
-    const newAssertions = assertions + 1;
-    scoreDispatch(newAssertions, newScore);
+    scoreDispatch(acertos + 1, newScore);
   }
 
   showNextButton = () => {
@@ -148,21 +146,22 @@ class Buttons extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   time: state.timer.time,
-// });
-
 Buttons.propTypes = {
   correct: PropTypes.string.isRequired,
   incorrect: PropTypes.arrayOf(PropTypes.any).isRequired,
   level: PropTypes.string.isRequired,
   scoreDispatch: PropTypes.func.isRequired,
   nextDispatch: PropTypes.func.isRequired,
+  acertos: PropTypes.number.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  acertos: state.player.assertions,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   scoreDispatch: (assertions, score) => dispatch(scoreAction(assertions, score)),
   nextDispatch: () => dispatch(nextAction()),
 });
 
-export default connect(null, mapDispatchToProps)(Buttons);
+export default connect(mapStateToProps, mapDispatchToProps)(Buttons);

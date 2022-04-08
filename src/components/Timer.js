@@ -19,7 +19,6 @@ class Timer extends Component {
     setTimeout(() => {
       const timer = setInterval(() => {
         const { time } = this.state;
-        // const { timeDispatch } = this.props;
         this.setState({ time: time - 1 }, () => {
           if (time === 1) {
             clearInterval(timer); // Para o timer
@@ -40,7 +39,6 @@ class Timer extends Component {
             });
           }
         });
-        // timeDispatch(time);
       }, ONE_SEC);
       document.getElementById('timer').style = 'opacity: 1; position: relative;';
     }, FIVE_SEC);

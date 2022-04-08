@@ -8,7 +8,6 @@ class Question extends Component {
     const {
       category,
       text } = this.props;
-    console.log('Render Questions');
     return (
       <section className={ styles.question }>
         <h1 data-testid="question-category">{category}</h1>
