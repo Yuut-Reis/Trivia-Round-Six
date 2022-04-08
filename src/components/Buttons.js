@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { scoreAction } from '../actions';
+import { decode } from 'he';
+import { scoreAction, nextAction } from '../actions/actions';
 
 class Buttons extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Buttons extends Component {
 
     this.state = {
       // time: 30,
+      showNext: false,
     };
   }
 
@@ -25,6 +27,8 @@ class Buttons extends Component {
       right.style.border = '3px solid rgb(6, 240, 15)';
       // this.handleWrongAnswer();
     }
+
+    this.showNextButton();
 
     const wrong = document.querySelectorAll('.wrong-answer');
     wrong.forEach((item) => {
@@ -60,7 +64,19 @@ class Buttons extends Component {
     scoreDispatch(newAssertions, newScore);
   }
 
+  showNextButton = () => {
+    this.setState({
+      showNext: true,
+    });
+  }
+
+  handleClickNext = () => {
+    const { nextDispatch } = this.props;
+    nextDispatch();
+  }
+
   render() {
+    const { showNext } = this.state;
     const {
       correct,
       incorrect } = this.props;
@@ -84,7 +100,7 @@ class Buttons extends Component {
                     type="button"
                     onClick={ this.handleClick }
                   >
-                    {alternativa}
+                    {decode(alternativa)}
                   </button>
                 )
                 : (
@@ -95,13 +111,25 @@ class Buttons extends Component {
                     type="button"
                     onClick={ this.handleClick }
                   >
-                    {alternativa}
+                    {decode(alternativa)}
                   </button>
                 )
             ))]
             .map((value) => ({ value, sort: Math.random() }))
             .sort((a, b) => a.sort - b.sort)
             .map(({ value }) => value)
+        }
+        {
+          showNext && (
+            <button
+              id="next-btn"
+              data-testid="btn-next"
+              type="button"
+              onClick={ this.handleClickNext }
+            >
+              Next
+            </button>
+          )
         }
       </div>
     );
@@ -121,6 +149,7 @@ Buttons.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   scoreDispatch: (assertions, score) => dispatch(scoreAction(assertions, score)),
+  nextDispatch: () => dispatch(nextAction()),
 });
 
 export default connect(null, mapDispatchToProps)(Buttons);

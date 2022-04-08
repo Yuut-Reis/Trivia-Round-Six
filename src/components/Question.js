@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { decode } from 'he';
+import styles from './Question.module.css';
 
 class Question extends Component {
   render() {
@@ -8,9 +10,9 @@ class Question extends Component {
       text } = this.props;
     console.log('Render Questions');
     return (
-      <section>
+      <section className={ styles.question }>
         <h1 data-testid="question-category">{category}</h1>
-        <p data-testid="question-text">{text}</p>
+        <p data-testid="question-text">{decode(text)}</p>
         <div data-testid="answer-options" />
       </section>
     );

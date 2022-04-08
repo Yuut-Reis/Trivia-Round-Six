@@ -126,6 +126,11 @@
   color: black;
 }
 
+input:-webkit-autofill {
+  box-shadow: 0 0 0 30px var(--pink) inset;
+  color: black;
+}
+
 .config {
   align-items: center;
   aspect-ratio: 1/1;

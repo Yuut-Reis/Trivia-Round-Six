@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 import { DiAptana } from 'react-icons/di';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchQuestionAction, fetchTokenAction, playerAction } from '../actions';
+import { fetchQuestionAction, fetchTokenAction, playerAction } from '../actions/actions';
 import soundTrack from '../assets/audio/Way Back Then.mp3';
 import logo from '../assets/images/en-logo.png';
 import playgroundBackground from '../assets/images/no-soldier-playgorund.jpg';
 import soldiers from '../assets/images/soldiers.png';
 import './Login.css';
 import styles from './Login.module.css';
+import soundTrack2 from '../assets/audio/Pink Soldiers.mp3';
 
 class Login extends Component {
   state = {
@@ -43,6 +44,10 @@ class Login extends Component {
     player(email, name);
     await questions(tokenState);
     history.push('/game');
+    const song = new Audio(soundTrack2);
+    song.volume = 0.1;
+    song.loop = true;
+    song.play();
   };
 
   startSong(song) {

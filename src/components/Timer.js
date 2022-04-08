@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { timeAction } from '../actions';
+import { timeAction } from '../actions/actions';
+import styles from './Timer.module.css';
 
 class Timer extends Component {
   constructor() {
@@ -27,7 +28,9 @@ class Timer extends Component {
             // Colore os botões
             const buttons = document.querySelectorAll('button');
             buttons.forEach((singleButton) => {
-              singleButton.setAttribute('disabled', true);
+              if (singleButton.getAttribute('data-testid') !== 'btn-next') {
+                singleButton.setAttribute('disabled', true);
+              }
               if (singleButton.getAttribute('data-testid') === 'correct-answer') {
                 singleButton.style.border = '3px solid rgb(6, 240, 15)';
                 const wrong = document.querySelectorAll('.wrong-answer');
@@ -40,15 +43,14 @@ class Timer extends Component {
         });
         // timeDispatch(time);
       }, ONE_SEC);
+      document.getElementById('timer').style = 'opacity: 1; position: relative;';
     }, FIVE_SEC);
   }
 
   render() {
     const { time } = this.state;
     return (
-      <div>
-        <p>{time}</p>
-      </div>
+      <p id="timer" className={ styles.timer }>{time}</p>
     );
   }
 }

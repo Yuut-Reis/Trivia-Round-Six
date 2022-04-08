@@ -22,7 +22,12 @@ export const scoreAction = (assertions, score) => ({
 
 export const timeAction = (time) => ({
   type: 'SET_TIME',
-  payload: { time },
+  payload: time,
+});
+
+export const nextAction = (index) => ({
+  type: 'SET_NEXT',
+  payload: index,
 });
 
 export const fetchQuestionAction = (token) => async (dispatch) => {
