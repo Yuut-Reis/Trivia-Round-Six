@@ -145,6 +145,7 @@ Buttons.propTypes = {
   incorrect: PropTypes.arrayOf(PropTypes.any).isRequired,
   level: PropTypes.string.isRequired,
   scoreDispatch: PropTypes.func.isRequired,
+  nextDispatch: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

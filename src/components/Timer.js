@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { timeAction } from '../actions/actions';
 import styles from './Timer.module.css';
 
@@ -20,7 +19,7 @@ class Timer extends Component {
     setTimeout(() => {
       const timer = setInterval(() => {
         const { time } = this.state;
-        const { timeDispatch } = this.props;
+        // const { timeDispatch } = this.props;
         this.setState({ time: time - 1 }, () => {
           if (time === 1) {
             clearInterval(timer); // Para o timer

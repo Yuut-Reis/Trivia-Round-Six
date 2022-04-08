@@ -74,6 +74,7 @@ class Game extends Component {
 Game.propTypes = {
   token: PropTypes.string.isRequired,
   newToken: PropTypes.func.isRequired,
+  questionNumber: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
