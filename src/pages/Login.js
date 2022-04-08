@@ -65,6 +65,7 @@ class Login extends Component {
             <button
               data-testid="btn-settings"
               type="button"
+              className={ styles.config }
             >
               <DiAptana />
             </button>

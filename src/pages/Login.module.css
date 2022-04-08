@@ -1,3 +1,8 @@
+:root {
+
+  --pink: #ed1b76;
+}
+
 .header {
   display: flex;
   justify-content: flex-end;
@@ -12,14 +17,6 @@
   top: 0;
   width: 100%;
   z-index: -1;
-}
-
-
-.homepage {
-  align-items: center;
-  display: flex;
-  height: 93vh;
-  justify-content: center;
 }
 
 .main {
@@ -115,7 +112,7 @@
 }
 
 .loginForm input {
-  background-color: #ed1b76;
+  background-color: var(--pink);
   border: 0;
   border-radius: 10px;
   color: black;
@@ -127,4 +124,19 @@
 
 .loginForm input::placeholder {
   color: black;
+}
+
+.config {
+  align-items: center;
+  aspect-ratio: 1/1;
+  background-color: var(--pink);
+  border: 0;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  width: 36px;
+}
+
+.config svg {
+  color: white;
 }
