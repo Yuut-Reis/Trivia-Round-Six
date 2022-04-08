@@ -1,6 +1,8 @@
 const INITIAL_STATE = {
-  email: '',
   name: '',
+  assertions: 0,
+  email: '',
+  score: 0,
 };
 
 const player = (state = INITIAL_STATE, action) => {
@@ -8,8 +10,18 @@ const player = (state = INITIAL_STATE, action) => {
   case 'SET_EMAIL':
     return {
       ...state,
-      email: action.payload.email,
       name: action.payload.name,
+      // assertions: action.payload.assertions,
+      email: action.payload.email,
+      // score: action.payload.score,
+    };
+  case 'SET_SCORE':
+    return {
+      ...state,
+      // name: action.payload.name,
+      assertions: action.payload.assertions,
+      // email: action.payload.email,
+      score: action.payload.score,
     };
   default:
     return state;

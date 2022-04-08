@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { timeAction } from '../actions';
 
 class Timer extends Component {
-  state = {
-    time: 30,
+  constructor() {
+    super();
+
+    this.state = {
+      time: 30,
+    };
   }
 
   componentDidMount() {
@@ -12,6 +19,7 @@ class Timer extends Component {
     setTimeout(() => {
       const timer = setInterval(() => {
         const { time } = this.state;
+        const { timeDispatch } = this.props;
         this.setState({ time: time - 1 }, () => {
           if (time === 1) {
             clearInterval(timer); // Para o timer
@@ -30,6 +38,7 @@ class Timer extends Component {
             });
           }
         });
+        // timeDispatch(time);
       }, ONE_SEC);
     }, FIVE_SEC);
   }
@@ -44,4 +53,8 @@ class Timer extends Component {
   }
 }
 
-export default Timer;
+const mapDispatchToProps = (dispatch) => ({
+  timeDispatch: (time) => dispatch(timeAction(time)),
+});
+
+export default connect(null, mapDispatchToProps)(Timer);
