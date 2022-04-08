@@ -10,6 +10,7 @@ import playgroundBackground from '../assets/images/no-soldier-playgorund.jpg';
 import soldiers from '../assets/images/soldiers.png';
 import './Login.css';
 import styles from './Login.module.css';
+import soundTrack2 from '../assets/audio/Pink Soldiers.mp3';
 
 class Login extends Component {
   state = {
@@ -43,6 +44,10 @@ class Login extends Component {
     player(email, name);
     await questions(tokenState);
     history.push('/game');
+    const song = new Audio(soundTrack2);
+    song.volume = 0.1;
+    song.loop = true;
+    song.play();
   };
 
   startSong(song) {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './Timer.module.css';
 
 class Timer extends Component {
   state = {
@@ -31,15 +32,14 @@ class Timer extends Component {
           }
         });
       }, ONE_SEC);
+      document.getElementById('timer').style = 'opacity: 1; position: relative;';
     }, FIVE_SEC);
   }
 
   render() {
     const { time } = this.state;
     return (
-      <div>
-        <p>{time}</p>
-      </div>
+      <p id="timer" className={ styles.timer }>{time}</p>
     );
   }
 }

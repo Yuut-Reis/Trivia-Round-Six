@@ -1,5 +1,7 @@
+import { decode } from 'he';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import styles from './Question.module.css';
 
 class Question extends Component {
   handleClick = ({ target }) => {
@@ -32,10 +34,10 @@ class Question extends Component {
     // const { style } = this.state;
     const options = [...incorrect, correct];
     return (
-      <section>
+      <section className={ styles.question }>
         <h1 data-testid="question-category">{category}</h1>
-        <p data-testid="question-text">{text}</p>
-        <div data-testid="answer-options">
+        <p data-testid="question-text">{decode(text)}</p>
+        <div data-testid="answer-options" className={ styles.options }>
           {
             // Embaralhar array: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
             // Transformar elementos HTML em array: https://stackoverflow.com/questions/2735067/how-to-convert-a-dom-node-list-to-an-array-in-javascript
@@ -50,7 +52,7 @@ class Question extends Component {
                       type="button"
                       onClick={ this.handleClick }
                     >
-                      {alternativa}
+                      {decode(alternativa)}
                     </button>
                   )
                   : (
@@ -61,7 +63,7 @@ class Question extends Component {
                       type="button"
                       onClick={ this.handleClick }
                     >
-                      {alternativa}
+                      {decode(alternativa)}
                     </button>
                   )
               ))]

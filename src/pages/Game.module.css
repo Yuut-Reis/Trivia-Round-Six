@@ -1,0 +1,33 @@
+body {
+  background-image: url('../assets/images/Game-wallpaper.webp');
+  background-size: cover;
+  color: white;
+}
+
+.main {
+  align-items: center;
+  background-color: rgba(50, 50, 50, 51%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  min-width: 400px;
+  padding: 30px 70px;
+  width: 60%;
+}
+
+.soldiers {
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+}
+
+.soldiers img {
+  width: 20%;
+}
+
+.soldiers img:nth-of-type( 2 ) {
+  transform: scaleX(-1);
+}
