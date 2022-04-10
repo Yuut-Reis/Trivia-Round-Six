@@ -1,5 +1,38 @@
 .timer {
+  margin-bottom: 20px;
   opacity: 0;
   position: absolute;
-  transition: 1s linear;
+  text-align: center;
+  transition: 0.5s linear;
+  width: 100%;
+}
+
+.timer p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.progressBar {
+  background-color: gray;
+  border-radius: 10px;
+  display: block;
+  height: 7px;
+}
+
+.progressBar div {
+  animation: progressBar 30s linear 5s 1 forwards;
+  background-color: var(--pink);
+  border-radius: 10px;
+  height: inherit;
+}
+
+@keyframes progressBar {
+
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
 }

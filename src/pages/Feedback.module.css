@@ -1,0 +1,11 @@
+.main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: center;
+}
+
+.main img {
+  border: 10px solid var(--pink);
+}

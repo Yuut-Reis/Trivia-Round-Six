@@ -4,3 +4,12 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.question h1 {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.question p {
+  margin-bottom: 18px;
+}

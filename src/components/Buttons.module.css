@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.options button {
+.options button, .next {
   background-color: #037a76;
   border: 3px solid #037a76;
   border-radius: 5px;
@@ -15,4 +15,30 @@
   outline: 0;
   padding: 10px 0;
   width: 49%;
+}
+
+.next {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.next p {
+  animation: blinkingNext 0.7s 3s linear alternate infinite;
+  margin: 0;
+}
+
+@keyframes blinkingNext {
+
+  from {
+    opacity: 100%;
+  }
+
+  to {
+    opacity: 0%;
+  }
+}
+
+button:disabled {
+  background-color: #304f4e;
+  color: rgb(138, 138, 138);
 }

@@ -1,35 +1,42 @@
-import md5 from 'crypto-js/md5';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import Header from '../components/Header';
+import styles from './Feedback.module.css';
 
 class Feedback extends Component {
-  state = { }
-
   render() {
-    const { gravatarEmail, score, name } = this.props;
-    const imgSrc = md5(gravatarEmail).toString();
+    const { acertos } = this.props;
+    const MIN_GOOD = 3;
     return (
-      <header data-testid="feedback-text">
-        Feedback
-        <img src={ imgSrc } alt="profile" data-testid="header-profile-picture" />
-        <p data-testid="header-player-name">{ name }</p>
-        <p data-testid="header-score">{ score }</p>
-      </header>
+      <>
+        <Header />
+        <main className={ styles.main }>
+          {
+            acertos < MIN_GOOD ? (
+              <>
+                <p data-testid="feedback-text">Could be better...</p>
+                <img src="https://c.tenor.com/y8SmzfXWrpUAAAAC/squid-game.gif" alt="Pink soldier shooting at camera." />
+              </>
+            ) : (
+              <>
+                <p data-testid="feedback-text">Well Done!</p>
+                <img src="https://i0.wp.com/genxsingapore.com/wp-content/uploads/2021/10/moneybank.gif?resize=520%2C292&ssl=1" alt="Money falling inside giant pig vault." />
+              </>
+            )
+          }
+        </main>
+      </>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  gravatarEmail: state.player.email,
-  score: state.player.score,
-  name: state.player.name,
-});
-
 Feedback.propTypes = {
-  gravatarEmail: PropTypes.string.isRequired,
-  score: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  acertos: PropTypes.number.isRequired,
 };
 
-export default connect(mapStateToProps, null)(Feedback);
+const mapStateToProps = (state) => ({
+  acertos: state.player.assertions,
+});
+
+export default connect(mapStateToProps)(Feedback);
