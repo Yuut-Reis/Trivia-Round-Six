@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { DiAptana } from 'react-icons/di';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchQuestionAction, fetchTokenAction, playerAction } from '../actions';
+import { fetchQuestionAction, fetchTokenAction, playerAction } from '../actions/actions';
 import soundTrack from '../assets/audio/Way Back Then.mp3';
 import logo from '../assets/images/en-logo.png';
 import playgroundBackground from '../assets/images/no-soldier-playgorund.jpg';

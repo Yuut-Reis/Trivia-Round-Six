@@ -15,6 +15,21 @@ export const playerAction = (email, name) => ({
   payload: { email, name },
 });
 
+export const scoreAction = (assertions, score) => ({
+  type: 'SET_SCORE',
+  payload: { assertions, score },
+});
+
+export const timeAction = (time) => ({
+  type: 'SET_TIME',
+  payload: time,
+});
+
+export const nextAction = (index) => ({
+  type: 'SET_NEXT',
+  payload: index,
+});
+
 export const fetchQuestionAction = (token) => async (dispatch) => {
   dispatch({ type: 'FETCH_QUESTIONS_START' });
   try {

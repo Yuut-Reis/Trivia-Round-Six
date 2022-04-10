@@ -1,6 +1,6 @@
 body {
   background-image: url('../assets/images/Game-wallpaper.webp');
-  background-size: cover;
+  background-size: 100vw 100vh;
   color: white;
 }
 
@@ -10,10 +10,15 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  left: 50%;
   margin: 0 auto;
   min-width: 400px;
   padding: 30px 70px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 60%;
+  z-index: 1;
 }
 
 .soldiers {
@@ -22,6 +27,7 @@ body {
   justify-content: space-between;
   position: absolute;
   width: 100%;
+  z-index: -1;
 }
 
 .soldiers img {

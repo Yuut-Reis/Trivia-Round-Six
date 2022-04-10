@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { timeAction } from '../actions/actions';
 import styles from './Timer.module.css';
 
 class Timer extends Component {
-  state = {
-    time: 30,
+  constructor() {
+    super();
+
+    this.state = {
+      time: 30,
+    };
   }
 
   componentDidMount() {
@@ -20,7 +26,9 @@ class Timer extends Component {
             // Colore os botões
             const buttons = document.querySelectorAll('button');
             buttons.forEach((singleButton) => {
-              singleButton.setAttribute('disabled', true);
+              if (singleButton.getAttribute('data-testid') !== 'btn-next') {
+                singleButton.setAttribute('disabled', true);
+              }
               if (singleButton.getAttribute('data-testid') === 'correct-answer') {
                 singleButton.style.border = '3px solid rgb(6, 240, 15)';
                 const wrong = document.querySelectorAll('.wrong-answer');
@@ -39,9 +47,18 @@ class Timer extends Component {
   render() {
     const { time } = this.state;
     return (
-      <p id="timer" className={ styles.timer }>{time}</p>
+      <div id="timer" className={ styles.timer }>
+        <p>{time}</p>
+        <div className={ styles.progressBar }>
+          <div />
+        </div>
+      </div>
     );
   }
 }
 
-export default Timer;
+const mapDispatchToProps = (dispatch) => ({
+  timeDispatch: (time) => dispatch(timeAction(time)),
+});
+
+export default connect(null, mapDispatchToProps)(Timer);
