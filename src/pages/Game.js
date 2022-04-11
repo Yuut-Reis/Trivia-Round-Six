@@ -23,6 +23,7 @@ class Game extends Component {
   async componentDidMount() {
     const { newToken, token } = this.props;
     const request = await fetchQuestionAPI(token);
+    console.log(request);
     this.setState({ questionsState: request.results });
 
     const ERROR_API = 3;

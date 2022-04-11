@@ -81,12 +81,11 @@ class Buttons extends Component {
   }
 
   handleCorrectAnswer = () => {
-    const { level, scoreDispatch, acertos } = this.props;
+    const { level, scoreDispatch, acertos, time } = this.props;
     console.log(acertos);
 
     let difficulty = 0;
     const number = 10;
-    const time = 5;
     const tree = 3;
 
     if (level === 'hard') {
@@ -158,10 +157,12 @@ Buttons.propTypes = {
   nextDispatch: PropTypes.func.isRequired,
   acertos: PropTypes.number.isRequired,
   resetTimeDispatch: PropTypes.func.isRequired,
+  time: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   acertos: state.player.assertions,
+  time: state.timer.time,
 });
 
 const mapDispatchToProps = (dispatch) => ({

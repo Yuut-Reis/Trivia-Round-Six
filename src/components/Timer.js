@@ -19,8 +19,10 @@ class Timer extends Component {
     const FIVE_SEC = 5000;
     const initialTimer = setTimeout(() => {
       const timer = setInterval(() => {
-        const { time } = this.state;
-        this.setState({ time: time - 1 }, () => {
+        this.setState((prevState) => ({ time: prevState.time - 1 }), () => {
+          const { time } = this.state;
+          const { timeDispatch } = this.props;
+          timeDispatch(time);
           if (time === 1) {
             clearInterval(timer); // Para o timer
             // Colore os botões
@@ -86,6 +88,7 @@ const mapDispatchToProps = (dispatch) => ({
 Timer.propTypes = {
   resetTime: PropTypes.func.isRequired,
   resetTimeDispatch: PropTypes.func.isRequired,
+  timeDispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);

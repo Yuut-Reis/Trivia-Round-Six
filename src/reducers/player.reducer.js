@@ -21,7 +21,7 @@ const player = (state = INITIAL_STATE, action) => {
       // name: action.payload.name,
       assertions: action.payload.assertions,
       // email: action.payload.email,
-      score: action.payload.score,
+      score: action.payload.score + state.score,
     };
   default:
     return state;
