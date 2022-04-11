@@ -1,11 +1,16 @@
 const INICIAL_STATE = {
   time: 0,
+  resetTime: false,
 };
 
 const timer = (state = INICIAL_STATE, action) => {
   switch (action.type) {
   case 'SET_TIME':
-    return action.payload;
+    return { ...state,
+      time: action.payload };
+  case 'SET_RESET':
+    return { ...state,
+      resetTime: action.payload };
   default:
     return state;
   }

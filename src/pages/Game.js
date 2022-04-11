@@ -37,11 +37,11 @@ class Game extends Component {
       <>
         <Header />
         <main className={ styles.main }>
-          <Timer />
           {
             questionsState.filter((item, index) => index === questionNumber)
               .map((item, index) => (
                 <div key={ item.question }>
+                  <Timer />
                   <Question
                     id={ index }
                     category={ item.category }

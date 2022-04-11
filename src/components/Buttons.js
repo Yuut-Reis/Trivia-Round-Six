@@ -2,7 +2,7 @@ import { decode } from 'he';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { nextAction, scoreAction } from '../actions/actions';
+import { nextAction, scoreAction, resetTimeAction } from '../actions/actions';
 import styles from './Buttons.module.css';
 
 class Buttons extends Component {
@@ -59,6 +59,8 @@ class Buttons extends Component {
   }
 
   handleClick = ({ target }) => {
+    const { resetTimeDispatch } = this.props;
+    resetTimeDispatch(true);
     const element = target.getAttribute('data-testid');
 
     if (element === 'correct-answer') {
@@ -155,6 +157,7 @@ Buttons.propTypes = {
   scoreDispatch: PropTypes.func.isRequired,
   nextDispatch: PropTypes.func.isRequired,
   acertos: PropTypes.number.isRequired,
+  resetTimeDispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -164,6 +167,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   scoreDispatch: (assertions, score) => dispatch(scoreAction(assertions, score)),
   nextDispatch: () => dispatch(nextAction()),
+  resetTimeDispatch: (resetTime) => dispatch(resetTimeAction(resetTime)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Buttons);
