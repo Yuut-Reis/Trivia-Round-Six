@@ -86,7 +86,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Timer.propTypes = {
-  resetTime: PropTypes.func.isRequired,
+  resetTime: PropTypes.bool.isRequired,
   resetTimeDispatch: PropTypes.func.isRequired,
   timeDispatch: PropTypes.func.isRequired,
 };

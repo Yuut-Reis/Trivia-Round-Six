@@ -6,11 +6,17 @@ import styles from './Feedback.module.css';
 
 class Feedback extends Component {
   render() {
-    const { acertos } = this.props;
+    const { acertos, pontuação } = this.props;
     const MIN_GOOD = 3;
     return (
       <>
         <Header />
+        <p data-testid="feedback-total-score">
+          { pontuação }
+        </p>
+        <p data-testid="feedback-total-question">
+          { acertos }
+        </p>
         <main className={ styles.main }>
           {
             acertos < MIN_GOOD ? (
@@ -33,10 +39,12 @@ class Feedback extends Component {
 
 Feedback.propTypes = {
   acertos: PropTypes.number.isRequired,
+  pontuação: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   acertos: state.player.assertions,
+  pontuação: state.player.score,
 });
 
 export default connect(mapStateToProps)(Feedback);
