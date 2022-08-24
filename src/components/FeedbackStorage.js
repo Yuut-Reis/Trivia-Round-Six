@@ -1,18 +1,22 @@
-function creatLocal() {
-  return localStorage.getItem('player') ? localStorage.getItem('player') : [];
-}
+function playerStorage(name, img, score) {
+  const bejeto = { name, img, score };
 
-export function playerStorage(assertions, score) {
-  const storage = creatLocal();
-  const bejeto = { assertions, score };
-
-  if (typeof storage === 'object') {
-    const pushStorage = JSON.stringify(storage.push(bejeto));
-    return localStorage.setItem('player', pushStorage);
+  if (localStorage.player) {
+    const itemLocal = localStorage.getItem('player');
+    let parseLocal = JSON.parse(itemLocal);
+    parseLocal.forEach((element) => {
+      if (element.name === bejeto.name) {
+        parseLocal = itemLocal;
+      } else {
+        const newLocal = [...parseLocal, itemLocal];
+        const stringLocal = JSON.stringify(newLocal);
+        return localStorage.setItem('player', stringLocal);
+      }
+    });
   }
-  const parseStorage = JSON.parse(storage);
-  const pushStorage = JSON.stringify(parseStorage.push(bejeto));
-  localStorage.setItem('player', pushStorage);
+  const stringLocal = JSON.stringify([bejeto]);
+  console.log(bejeto);
+  localStorage.setItem('player', stringLocal);
 }
 
-export default creatLocal;
+export default playerStorage;

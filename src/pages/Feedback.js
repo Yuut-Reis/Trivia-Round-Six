@@ -4,8 +4,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import styles from './Feedback.module.css';
+import playerStorage from '../components/FeedbackStorage';
 
 class Feedback extends Component {
+  componentDidMount() {
+    const { nome, img, pontuação } = this.props;
+    playerStorage(nome, img, pontuação);
+  }
+
   render() {
     const { acertos, pontuação } = this.props;
     const MIN_GOOD = 3;
@@ -48,11 +54,15 @@ class Feedback extends Component {
 Feedback.propTypes = {
   acertos: PropTypes.number.isRequired,
   pontuação: PropTypes.number.isRequired,
+  nome: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   acertos: state.player.assertions,
   pontuação: state.player.score,
+  nome: state.player.name,
+  img: state.token,
 });
 
 export default connect(mapStateToProps)(Feedback);
