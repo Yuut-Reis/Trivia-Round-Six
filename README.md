@@ -52,8 +52,9 @@
 </details>
 <hr>
  <strong>🎥 Site Funcionando </strong>
+ <br>
 
-  ![](/src/assets/videos/siteExe.mp4)
+  ![](/src/assets/videos/siteExe.gif)
   
 <hr>
 Achou algo errado? Tem uma dúvida? Precisa de ajudar ou quer só conversar?
